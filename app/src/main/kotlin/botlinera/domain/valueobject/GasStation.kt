@@ -1,23 +1,31 @@
 package botlinera.domain.valueobject
 
-class GasStation(
+data class GasStation(
     val name: String,
     val location: Location,
     val prices: Prices
 ) {
-    fun latitude(): Double {
-        return location.coordinates.latitude
-    }
+    fun latitude() = location.latitude()
 
-    fun longitude(): Double {
-        return location.coordinates.longitude
-    }
+    fun longitude() = location.longitude()
 
-    fun formatted(): String {
-        return buildString {
-            append("⛽️ $name\n")
-            append("🕐 ${location.time}")
-            append(prices.formatted())
-        }
+    fun postalCode() = location.postalCode
+
+    fun address() = location.address
+
+    fun time() = location.time
+
+    fun locality() = location.locality
+
+    fun municipality() = location.municipality
+
+    fun province() = location.province
+
+    fun formatted() = buildString {
+        append("⛽️ $name\n")
+        append("📍 ${location.locality}\n")
+        append("🏡 ${location.municipality}\n")
+        append("🕐 ${location.time}")
+        append(prices.formatted())
     }
 }

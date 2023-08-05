@@ -1,15 +1,14 @@
-package botlinera.infrastucture.schedulers
+package botlinera.infrastructure.schedulers
 
 import botlinera.application.usecases.UpdateGasStations
-import botlinera.infrastructure.schedulers.GasStationScheduler
 import io.mockk.mockk
 import io.mockk.verify
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 class GasStationSchedulerShould {
     @Test
     fun updateGasStationsAtStartup() {
-        val fakeUpdateGasStations = mockk<UpdateGasStations>()
+        val fakeUpdateGasStations = mockk<UpdateGasStations>(relaxed = true)
 
         GasStationScheduler().start { fakeUpdateGasStations.execute() }
 
